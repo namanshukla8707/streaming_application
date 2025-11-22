@@ -1,26 +1,44 @@
 package com.code.free.entities;
 
+import static com.code.free.utilities.globalEnums.RoleType.USER;
+
+import java.util.Collection;
+import java.util.List;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.code.free.utilities.globalEnums.RoleType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "user", schema = "dev")
+@Table(name = "user" ,schema = "auth")
 @Data
-public class UserEntity {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserEntity implements UserDetails{
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    @NotBlank(message = "Name is required")
-    private String name;
+    @Column(name = "username", nullable = false)
+    @NotBlank(message = "Username is required")
+    private String username;
 
     @Column(name = "email", nullable = false, unique = true)
     @NotBlank(message = "Email is required")
@@ -29,4 +47,16 @@ public class UserEntity {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    @Column(name = "role")
+    @Builder.Default
+    @Enumerated(EnumType.STRING)
+    private RoleType role = USER;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(() -> "ROLE_" + role.name());
+    }
+
+    
 }
