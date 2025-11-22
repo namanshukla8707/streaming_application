@@ -1,4 +1,4 @@
-package com.code.free.entities;
+package com.code.free.entities.user;
 
 import static com.code.free.utilities.globalEnums.RoleType.USER;
 

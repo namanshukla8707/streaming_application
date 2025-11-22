@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
-import com.code.free.entities.UserEntity;
-import com.code.free.repositories.UserRepo;
+import com.code.free.entities.user.UserEntity;
+import com.code.free.repositories.user.UserRepo;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
