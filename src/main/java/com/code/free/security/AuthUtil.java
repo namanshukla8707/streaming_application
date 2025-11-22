@@ -5,7 +5,7 @@ import java.util.Date;
 
 import javax.crypto.SecretKey;
 import org.springframework.stereotype.Component;
-import com.code.free.entities.UserEntity;
+import com.code.free.entities.user.UserEntity;
 import com.code.free.utilities.Constants;
 
 import io.jsonwebtoken.Claims;

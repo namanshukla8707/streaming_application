@@ -7,8 +7,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.code.free.configuration.Config;
-import com.code.free.entities.UserEntity;
-import com.code.free.repositories.UserRepo;
+import com.code.free.entities.user.UserEntity;
+import com.code.free.repositories.user.UserRepo;
 import com.code.free.requests.LoginRequestDto;
 import com.code.free.responses.LoginResponseDto;
 import com.code.free.responses.UserRegisterResponseDto;

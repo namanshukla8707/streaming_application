@@ -1,11 +1,11 @@
-package com.code.free.repositories;
+package com.code.free.repositories.user;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.code.free.entities.UserEntity;
+import com.code.free.entities.user.UserEntity;
 
 @Repository
 public interface UserRepo extends JpaRepository<UserEntity, Long> {
