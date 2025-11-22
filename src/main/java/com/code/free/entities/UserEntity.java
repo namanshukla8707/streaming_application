@@ -2,8 +2,11 @@ package com.code.free.entities;
 
 import static com.code.free.utilities.globalEnums.RoleType.USER;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -25,13 +28,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "user" ,schema = "auth")
+@Table(name = "user", schema = "public")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserEntity implements UserDetails{
-    
+public class UserEntity implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -53,10 +56,13 @@ public class UserEntity implements UserDetails{
     @Enumerated(EnumType.STRING)
     private RoleType role = USER;
 
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(() -> "ROLE_" + role.name());
     }
 
-    
 }
